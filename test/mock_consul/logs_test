@@ -1,0 +1,61 @@
+[{
+  "ID": "aa02244b-8015-4d04-b262-3e8dc858f6de",
+  "Node": "node-01.eu-dc1.logs.test",
+  "Address": "113.193.10.185",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "logs",
+    "stage": "test"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "logs.test",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.22",
+  "ServicePort": 51820
+},
+{
+  "ID": "d6f1d531-3537-469e-b41b-634edc0196ec",
+  "Node": "node-01.us-dc2.logs.test",
+  "Address": "247.62.201.106",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "logs",
+    "stage": "test"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "logs.test",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.37",
+  "ServicePort": 51820
+},
+{
+  "ID": "27986ac8-7d78-441a-8c38-73013bd701c4",
+  "Node": "node-01.as-dc3.logs.test",
+  "Address": "15.90.196.139",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "logs",
+    "stage": "test"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "logs.test",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.52",
+  "ServicePort": 51820
+}
+]

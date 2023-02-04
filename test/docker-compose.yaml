@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./mock_consul/wireguard:/usr/share/nginx/html/v1/catalog/service/wireguard
+      - ./mock_consul/app_prod:/usr/share/nginx/html/v1/catalog/service/app_prod
+      - ./mock_consul/app_test:/usr/share/nginx/html/v1/catalog/service/app_test
+      - ./mock_consul/backups_prod:/usr/share/nginx/html/v1/catalog/service/backups_prod
+      - ./mock_consul/backups_test:/usr/share/nginx/html/v1/catalog/service/backups_test
+      - ./mock_consul/logs_prod:/usr/share/nginx/html/v1/catalog/service/logs_prod
+      - ./mock_consul/logs_test:/usr/share/nginx/html/v1/catalog/service/logs_test
+      - ./mock_consul/metrics_prod:/usr/share/nginx/html/v1/catalog/service/metrics_prod
+      - ./mock_consul/metrics_test:/usr/share/nginx/html/v1/catalog/service/metrics_test
+      - ./mock_consul/host:/usr/share/nginx/html/v1/catalog/service/host
+    ports:
+      - "8500:80"
+  app_prod:
+    image:

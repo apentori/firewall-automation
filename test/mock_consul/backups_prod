@@ -1,0 +1,121 @@
+[{
+  "ID": "f2dac58a-4377-4cc2-9fe5-cbc483c82f4f",
+  "Node": "node-01.eu-dc1.backups.prod",
+  "Address": "200.224.62.2",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.23",
+  "ServicePort": 51820
+},
+{
+  "ID": "9e579def-40c5-4f44-add5-7bc2ab66d3b4",
+  "Node": "node-02.eu-dc1.backups.prod",
+  "Address": "138.6.99.76",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.24",
+  "ServicePort": 51820
+},
+{
+  "ID": "50a88dc4-37e9-4f4d-a826-e17569540f77",
+  "Node": "node-01.us-dc2.backups.prod",
+  "Address": "40.188.128.15",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.38",
+  "ServicePort": 51820
+},
+{
+  "ID": "036962c0-b159-43ba-a891-27b8bb4b13a8",
+  "Node": "node-02.us-dc2.backups.prod",
+  "Address": "254.70.93.40",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.39",
+  "ServicePort": 51820
+},
+{
+  "ID": "46e2692a-0169-4380-8bef-bf3d5aef334e",
+  "Node": "node-01.as-dc3.backups.prod",
+  "Address": "10.35.132.112",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.53",
+  "ServicePort": 51820
+},
+{
+  "ID": "0975d2cd-272c-4ba9-8896-5e92a4455fe6",
+  "Node": "node-02.as-dc3.backups.prod",
+  "Address": "49.23.136.99",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "backups",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "backups.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.54",
+  "ServicePort": 51820
+}
+]

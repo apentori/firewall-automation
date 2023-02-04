@@ -1,0 +1,122 @@
+[
+  {
+  "ID": "b27a1a90-dff4-4ff8-9fe8-cc3b573a85b7",
+  "Node": "node-01.eu-dc1.metrics.prod",
+  "Address": "171.53.121.51",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.17",
+  "ServicePort": 51820
+},
+{
+  "ID": "03deab88-ddd4-46ca-a38a-e75a4635c3a3",
+  "Node": "node-02.eu-dc1.metrics.prod",
+  "Address": "221.211.6.3",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.18",
+  "ServicePort": 51820
+},
+{
+  "ID": "2fae0dd4-9c8a-4cc7-a691-19b857978b97",
+  "Node": "node-01.us-dc2.metrics.prod",
+  "Address": "210.190.111.233",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.32",
+  "ServicePort": 51820
+},
+{
+  "ID": "6c891506-08fa-4c85-a09f-fc3264be6dee",
+  "Node": "node-02.us-dc2.metrics.prod",
+  "Address": "7.60.97.140",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.33",
+  "ServicePort": 51820
+},
+{
+  "ID": "393abbda-cf32-46a8-8347-77d0ae579e15",
+  "Node": "node-01.as-dc3.metrics.prod",
+  "Address": "18.241.46.178",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.47",
+  "ServicePort": 51820
+},
+{
+  "ID": "47322764-cb9d-445b-b0b0-332c65bdccc7",
+  "Node": "node-02.as-dc3.metrics.prod",
+  "Address": "65.147.50.145",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "metrics",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "metrics.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.48",
+  "ServicePort": 51820
+}
+]

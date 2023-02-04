@@ -1,0 +1,242 @@
+[
+  {
+  "ID": "57f3ac85-4c77-4f6f-8156-e0b30b6089bf",
+  "Node": "node-01.eu-dc1.app.prod",
+  "Address": "204.122.196.53",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.26",
+  "ServicePort": 51820
+},
+{
+  "ID": "7a49e417-4ebd-45fc-98f0-dcc1d5a10fd6",
+  "Node": "node-02.eu-dc1.app.prod",
+  "Address": "75.148.10.34",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.27",
+  "ServicePort": 51820
+},
+{
+  "ID": "8607ddaa-d671-4ad4-8ba6-cef381ea1a7f",
+  "Node": "node-03.eu-dc1.app.prod",
+  "Address": "83.44.215.250",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.28",
+  "ServicePort": 51820
+},
+{
+  "ID": "a789d018-a36b-4f43-8e4e-f6c5cd9ce372",
+  "Node": "node-04.eu-dc1.app.prod",
+  "Address": "178.232.96.51",
+  "Datacenter": "eu-dc1",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "eu-dc1",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.29",
+  "ServicePort": 51820
+},
+{
+  "ID": "77c1e562-2975-4817-8ff4-93a4b7305c07",
+  "Node": "node-01.us-dc2.app.prod",
+  "Address": "130.184.120.208",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.41",
+  "ServicePort": 51820
+},
+{
+  "ID": "d3c28360-72ab-433e-905c-03dbebedc14b",
+  "Node": "node-02.us-dc2.app.prod",
+  "Address": "93.244.3.194",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.42",
+  "ServicePort": 51820
+},
+{
+  "ID": "fd7cb73b-2533-413e-8610-47d4912211af",
+  "Node": "node-03.us-dc2.app.prod",
+  "Address": "194.173.32.130",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.43",
+  "ServicePort": 51820
+},
+{
+  "ID": "352b7f8f-8363-4354-841c-59a8a39514d3",
+  "Node": "node-04.us-dc2.app.prod",
+  "Address": "110.231.123.116",
+  "Datacenter": "us-dc2",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "us-dc2",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.44",
+  "ServicePort": 51820
+},
+{
+  "ID": "f6f68539-3388-4215-884b-7b8764509071",
+  "Node": "node-01.as-dc3.app.prod",
+  "Address": "132.52.181.241",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.56",
+  "ServicePort": 51820
+},
+{
+  "ID": "cbd85823-85ba-4bac-8cf5-ccfea0b1207d",
+  "Node": "node-02.as-dc3.app.prod",
+  "Address": "233.239.114.186",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.57",
+  "ServicePort": 51820
+},
+{
+  "ID": "94893a74-3f70-4e98-874f-64a6c17d0ac3",
+  "Node": "node-03.as-dc3.app.prod",
+  "Address": "105.221.209.151",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.58",
+  "ServicePort": 51820
+},
+{
+  "ID": "3c225121-60e3-44e8-99b1-262b171e36b3",
+  "Node": "node-04.as-dc3.app.prod",
+  "Address": "164.93.118.40",
+  "Datacenter": "as-dc3",
+  "NodeMeta": {
+    "env": "app",
+    "stage": "prod"
+  },
+  "ServiceID": "wireguard",
+  "ServiceName": "wireguard",
+  "ServiceTags": [
+    "as-dc3",
+    "app.prod",
+    "wireguard",
+    "vpn"
+  ],
+  "ServiceAddress": "10.10.0.59",
+  "ServicePort": 51820
+}
+]
