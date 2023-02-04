@@ -15,5 +15,5 @@ services:
       - ./mock_consul/host:/usr/share/nginx/html/v1/catalog/service/host
     ports:
       - "8500:80"
-  app_prod:
-    image:
+  # app_prod:
+  #   image:
