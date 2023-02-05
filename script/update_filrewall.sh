@@ -1,15 +1,7 @@
 #!/bin/bash
 
-# Script updating the firewalld configuration of fleets Consul catalog data.
-
-## Steps 
-
-# 1. Call Consult to get the node role
-# 2. Load the acording template
-# 3. Execute the template
-
-# Constant
-## TODO put into a .env file ?
+# Script updating the firewalld configuration of fleets using Consul catalog data.
+# version: 0.0.1
 
 CONSUL_HOST="localhost"
 CONSUL_PORT="8500"
@@ -23,6 +15,13 @@ FIREWALLD_ZONE_CONFIG="./result"
 ################################################################################################
 #####                                       Functions                                      #####
 ################################################################################################
+
+function log_info() {
+    # Escaping the message so it's valid for logstash
+    message=$(echo "$1" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\t/\\t/g' | sed 's/\\/\\\\/g' | sed 's/"/\\"/g')
+    timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    echo "{\"timestamp\":\"$timestamp\",\"message\":\"$message\"}"
+}
 
 function callConsul(){
     local filter=$1
@@ -53,7 +52,7 @@ function write_zone_firewalld(){
     done <<< "$hosts_logs_prod"
 
     zone+=$'\t<port port="'${port}$'"protocol="tcp"/>\n</zone>'
-    echo "Writing the zone ${zone_name}"
+    log_info "Updating the firewalld zone ${zone_name} with $zone"
     echo "$zone" > "$FIREWALLD_ZONE_CONFIG/$zone_name"
 
 }
@@ -61,6 +60,7 @@ function write_zone_firewalld(){
 ################################################################################################
 #####                                       Main                                           #####
 ################################################################################################
+log_info "Starting the script"
 
 # Test mode
 host_data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT_2" | jq '.[] | { Node, NodeMeta, ServiceMeta }')
@@ -71,31 +71,39 @@ host_data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT_2" | jq 
 env=$(echo $hosts_data | jq '.NodeMeta.env')
 stage=$(echo $hosts_data | jq '.NodeMeta.stage')
 
-echo "$hostname - Env : $env - stage $stage"
+log_info "The script run on $hostname, it's env is  $env and stage is $stage"
 
+log_info "updating rule for logs env in prod"
 hosts_logs_prod=$(getServiceAddressByEnvAndStage "logs" "prod")
 write_zone_firewalld 'logs_prod.xml' '$hosts_logs_prod' '5141'
 
+log_info "updating rule for logs env in test"
 hosts_logs_test=$(getServiceAddressByEnvAndStage "logs" "test")
 write_zone_firewalld 'logs_test.xml' '$hosts_logs_test' '5141'
 
+log_info "updating rule for metrics env in prod"
 hosts_metrics_prod=$(getServiceAddressByEnvAndStage "metrics" "prod")
 write_zone_firewalld 'metrics_prod.xml' '$hosts_metrics_prod' '9100'
 
+log_info "updating rule for metrics env in test"
 hosts_metrics_test=$(getServiceAddressByEnvAndStage "metrics" "test")
 write_zone_firewalld 'metrics_test.xml' '$hosts_metrics_test' '9100'
 
 if [[ $env == "app" ]];
 then
+    log_info "updating rule for sql metrics in prod"
     write_zone_firewalld "metrics_sql_prod.xml" "$hosts_metrics_test" "9104"
+    log_info "updating rule for sql metrics in test"
     write_zone_firewalld "metrics_sql_test.xml" "$hosts_metrics_test" "9104"
 
+    log_info "updating rule for backups in prod"
     hosts_backups_prod=$(getServiceAddressByEnvAndStage "backups" "prod")
     write_zone_firewalld "backups_prod.xml" "$hosts_backups_prod" "3306"
+    log_info "updating rule for backups in test"
     hosts_backups_test=$(getServiceAddressByEnvAndStage "backups" "test")
     write_zone_firewalld "backups_test.xml" "$hosts_backups_test" "3306"
 fi
 
-echo "Reloading firewalld after configuration"
+log_info "Reloading firewalld after configuration"
 firewall-cmd --reload
 
