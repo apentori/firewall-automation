@@ -1,0 +1,22 @@
+[
+  {
+    "ID": "b27a1a90-dff4-4ff8-9fe8-cc3b573a85b7",
+    "Node": "node-01.eu-dc1.metrics.prod",
+    "Address": "171.53.121.51",
+    "Datacenter": "eu-dc1",
+    "NodeMeta": {
+      "env": "metrics",
+      "stage": "prod"
+    },
+    "ServiceID": "wireguard",
+    "ServiceName": "wireguard",
+    "ServiceTags": [
+      "eu-dc1",
+      "metrics.prod",
+      "wireguard",
+      "vpn"
+    ],
+    "ServiceAddress": "192.168.57.3",
+    "ServicePort": 51820
+  }
+]

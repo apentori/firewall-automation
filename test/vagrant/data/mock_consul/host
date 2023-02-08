@@ -16,7 +16,7 @@
         "wireguard",
         "vpn"
       ],
-      "ServiceAddress": "10.10.0.26",
+      "ServiceAddress": "192.168.57.2",
       "ServicePort": 51820
     }
   ]

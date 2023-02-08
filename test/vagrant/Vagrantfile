@@ -1,0 +1,56 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.synced_folder "./data", "/vagrant_data"
+  
+  # Resource configuraiton
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 1
+  end
+
+  # VM simulating an app.prod fleet member
+  config.vm.define "vm1" do |vm1|
+    vm1.vm.hostname= "node-01" 
+    vm1.vm.network "private_network", ip: "192.168.57.2"
+    vm1.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update -y 
+      sudo apt install firewalld jq -y
+      sudo systemctl enable firewalld 
+    SHELL
+  end
+
+  # VM simulating an metric.prod fleet member
+  config.vm.define "vm2" do |vm2|
+    vm2.vm.hostname= "node-02" 
+    # Fix the IP to match the data from the mock consul
+    vm2.vm.network "private_network", ip: "192.168.57.3"  
+    vm2.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update -y 
+      sudo apt install firewalld jq -y
+      sudo systemctl enable firewalld 
+      sudo cp /vagrant_data/update-firewall.* /etc/systemd/system/
+      sudo systemctl enable update-firewall.service update-firewall.timer
+      sudo systemctl start update-firewall.service update-firewall.timer
+  SHELL
+  end 
+
+  config.vm.define "vm3" do |vm3|
+    vm3.vm.hostname = "consul"
+    vm3.vm.network "private_network", ip: "192.168.57.4"  
+
+    vm3.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      # Old package of docker so it's docker-compose and not docker-compose-plugin
+      sudo apt-get install -y docker.io docker-compose
+      sudo usermod -aG docker vagrant 
+      sudo systemctl start docker
+      docker-compose -f /vagrant_data/docker-compose.yaml up -d
+    SHELL
+  end 
+  
+end
