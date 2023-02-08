@@ -44,7 +44,7 @@ flowchart LR
   VM1-- Call Consul API --> VM3
   VM2-- Call Consul API --> VM3
   VM2 -- Port 9100 allowed --> VM1
-  VM1 -- No port allowed --> VM2
+  Consul -- No port allowed --> VM1
 
 ````
 
