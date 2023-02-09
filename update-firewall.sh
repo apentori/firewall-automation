@@ -69,7 +69,7 @@ host_stage=$(echo $host_data | jq -r '.NodeMeta.stage')
 log_info "The script run on $(hostname), from the $host_env fleet in $host_stage"
 
 
-log_info "Updating rule for logs env"
+log_info "Updating rules to allow access from logs env"
 
 hosts_logs=("$(getServiceAddressByEnvAndStage "logs" "prod")" "$(getServiceAddressByEnvAndStage "logs" "test")")
 echo "$hosts_logs"
@@ -82,13 +82,13 @@ then
     ports_metrics+=("9104")
 fi
 
-log_info "Updating rule for metrics env"
+log_info "Updating rules to allow access from metrics env"
 hosts_metrics=("$(getServiceAddressByEnvAndStage "metrics" "prod")" "$(getServiceAddressByEnvAndStage "metrics" "test")")
 write_zone_firewalld "zone_metrics.xml" "$hosts_metrics" $ports_metrics
 
 if [[ $host_env == "app" ]];
 then
-    log_info "updating rule for backups in prod"
+    log_info "updating rules to allow access from backups env "
     hosts_backups=("$(getServiceAddressByEnvAndStage "backups" "prod")" "$(getServiceAddressByEnvAndStage "backups" "test")")
     write_zone_firewalld "zone_backups.xml" "$hosts_backups" "3306"
 fi
