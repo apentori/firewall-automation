@@ -50,6 +50,8 @@ flowchart LR
   VM1 -- Port 5141 allowed --> VM3
   VM2 -- Port 5141 allowed --> VM3
   VM4 -- No port allowed --> VM1
+  VM4 -- No port allowed --> VM2
+  VM4 -- No port allowed --> VM3
 ````
 
 ### Steps
