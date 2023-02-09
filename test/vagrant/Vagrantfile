@@ -46,11 +46,27 @@ Vagrant.configure("2") do |config|
     SHELL
   end 
 
+    # VM simulating an logs.prod fleet member 
   config.vm.define "vm3" do |vm3|
-    vm3.vm.hostname = "consul"
+    vm3.vm.hostname = "node-03"
+    # Fix the IP to match the data from the mock consul
     vm3.vm.network "private_network", ip: "192.168.57.4"  
-
     vm3.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update -y 
+    sudo apt install firewalld jq -y
+    sudo systemctl enable firewalld 
+    sudo systemctl start firewalld 
+    sudo cp /vagrant_data/update-firewall.* /etc/systemd/system/
+    sudo chmod +x /etc/systemd/system/update-firewall.sh
+    sudo systemctl enable update-firewall.service update-firewall.timer
+    sudo systemctl start update-firewall.service update-firewall.timer
+    SHELL
+  end 
+    # VM simulating consu
+  config.vm.define "vm4" do |vm4|
+    vm4.vm.hostname = "consul"
+    vm4.vm.network "private_network", ip: "192.168.57.5"  
+    vm4.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
       # Old package of docker so it's docker-compose and not docker-compose-plugin
       sudo apt-get install -y docker.io docker-compose
@@ -59,5 +75,5 @@ Vagrant.configure("2") do |config|
       docker-compose -f /vagrant_data/docker-compose.yaml up -d
     SHELL
   end 
-  
+
 end

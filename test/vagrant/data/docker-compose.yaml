@@ -14,6 +14,7 @@ services:
       - /vagrant_data/mock_consul/metrics_test:/usr/share/nginx/html/v1/catalog/service/metrics_test
       - /vagrant_data/mock_consul/node-01:/usr/share/nginx/html/v1/catalog/service/node-01
       - /vagrant_data/mock_consul/node-02:/usr/share/nginx/html/v1/catalog/service/node-02
+      - /vagrant_data/mock_consul/node-03:/usr/share/nginx/html/v1/catalog/service/node-03
       - /vagrant_data/mock_consul/host:/usr/share/nginx/html/v1/catalog/service/host
     ports:
       - "8500:80"

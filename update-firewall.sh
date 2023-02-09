@@ -69,28 +69,38 @@ host_stage=$(echo $host_data | jq -r '.NodeMeta.stage')
 log_info "The script run on $(hostname), from the $host_env fleet in $host_stage"
 
 
-log_info "Updating rules to allow access from logs env"
-
-hosts_logs=("$(getServiceAddressByEnvAndStage "logs" "prod")" "$(getServiceAddressByEnvAndStage "logs" "test")")
-echo "$hosts_logs"
-write_zone_firewalld "zone_log.xml" $hosts_logs "5141"
-
 ports_metrics=(9100)
 
 if [[ $host_env == "app" ]];
 then
     ports_metrics+=("9104")
+elif [[ $host_env == "logs" ]];
+then
+    ports_metrics+=("5141")
 fi
 
-log_info "Updating rules to allow access from metrics env"
+log_info "Updating rule for metrics env"
 hosts_metrics=("$(getServiceAddressByEnvAndStage "metrics" "prod")" "$(getServiceAddressByEnvAndStage "metrics" "test")")
 write_zone_firewalld "zone_metrics.xml" "$hosts_metrics" $ports_metrics
 
 if [[ $host_env == "app" ]];
 then
-    log_info "updating rules to allow access from backups env "
+    log_info "updating rules to allow access from backups env"
     hosts_backups=("$(getServiceAddressByEnvAndStage "backups" "prod")" "$(getServiceAddressByEnvAndStage "backups" "test")")
     write_zone_firewalld "zone_backups.xml" "$hosts_backups" "3306"
+elif [[ $host_env == "logs" ]];
+then 
+    log_info "updating rules to allow access from  backups env"
+    hosts_backups=("$(getServiceAddressByEnvAndStage "backups" "prod")" "$(getServiceAddressByEnvAndStage "backups" "test")")
+    write_zone_firewalld "zone_backups.xml" "$hosts_backups" "5141"
+
+    log_info "updating rules to allow access from app env"
+    hosts_app=("$(getServiceAddressByEnvAndStage "app" "prod")" "$(getServiceAddressByEnvAndStage "app" "test")")
+    write_zone_firewalld "zone_app.xml" "$hosts_app" "5141"
+
+    hosts_logs=("$(getServiceAddressByEnvAndStage "logs" "prod")" "$(getServiceAddressByEnvAndStage "logs" "test")")
+    echo "$hosts_logs"
+    write_zone_firewalld "zone_log.xml" $hosts_logs "5141"
 fi
 
 
