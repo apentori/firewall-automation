@@ -3,7 +3,7 @@ Description=Run script to update the firewall rules based on Consul data
 
 [Service]
 Type=simple
-ExecStart=/etc/systemd/system/update-firewall.sh
+ExecStart=/etc/update-firewall.sh
 
 [Install]
 WantedBy=default.target

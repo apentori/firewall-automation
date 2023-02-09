@@ -4,10 +4,9 @@ RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
-#Execute job if it missed a run due to machine being off
 Persistent=true
-#Run  every 5 min 
-OnUnitActiveSec=300
+#Run  every day  
+OnUnitActiveSec=1d
 Unit=update-firewall.service
 
 [Install]

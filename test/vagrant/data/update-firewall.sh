@@ -7,19 +7,15 @@ CONSUL_HOST="192.168.57.4"
 CONSUL_PORT="8500"
 # CONSUL_ENDPOINT="v1/catalog/service/wireguard"
 CONSUL_ENDPOINT="v1/catalog/service"
-CONSUL_ENDPOINT_2="v1/catalog/service/host"
 FIREWALLD_ZONE_CONFIG="/etc/firewalld/zones"
-# FIREWALLD_ZONE_CONFIG="./result"
 
-# Set the IFS variable to semicolon (;)
-IFS=";"
 
 ################################################################################################
 #####                                       Functions                                      #####
 ################################################################################################
 
 function log_info() {
-    # Escaping the message so it's valid for logstash
+    # Escaping the message so xml can be valid for logstash
     message=$(echo "$1" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\t/\\t/g' | sed 's/\\/\\\\/g' | sed 's/"/\\"/g')
     timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     echo "{\"timestamp\":\"$timestamp\",\"message\":\"$message\"}"
@@ -27,9 +23,7 @@ function log_info() {
 
 function callConsul(){
     local filter=$1
-    # TODO uncomment when not in test mode
-    # local data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT" \
-    # --data-urlencode filter="$filter")
+
     local data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT/$filter")
     echo "$data"
 }
@@ -37,7 +31,7 @@ function callConsul(){
 function getServiceAddressByEnvAndStage(){
     local nodeEnv=$1
     local nodeStage=$2
-    # local data=$(callConsul "Node.meta.env=$nodeEnv and NodeMeta.stage=$nodeStage" )
+
     local data=$(callConsul "${nodeEnv}_${nodeStage}"| jq -r '.[].ServiceAddress' )
     echo "$data"
 }
@@ -49,7 +43,7 @@ function write_zone_firewalld(){
     zone=$'<?xml version="1.0" encoding="utf-8"?>\n<zone  target="%%REJECT%%">\n'
 
     while read -r host; do 
-        # The quotes for the adress values are taken from the json lists. Can be done in a cleaner way
+    
         zone+=$'\t<source address="'${host}$'"/>\n'
     done <<< "$hosts_list"
 
@@ -66,12 +60,8 @@ function write_zone_firewalld(){
 ################################################################################################
 log_info "Starting the script"
 
-# Test mode
 host_data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT/$(hostname)" | jq '.[] | { Node, NodeMeta, ServiceMeta }')
    
-# TODO uncomment when not in test mode
-# host_data=$(callConsul "Node==$(hostname)" | jq '.[] | { Node, NodeMeta, ServiceMeta }')
-
 host_env=$(echo $host_data | jq -r '.NodeMeta.env')
 host_stage=$(echo $host_data | jq -r '.NodeMeta.stage')
 

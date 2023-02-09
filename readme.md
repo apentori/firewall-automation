@@ -5,6 +5,8 @@ Task description <https://gist.github.com/jakubgs/678322ffa776e89e6c9a6bc0b474d0
 
 ## Installation
 
+The script can be run on it's own once (``./update-firewall.sh``) or periodicaly with systemd or crontab.
+
 ### Requirement
 
 To use the script, the following package needs to be installed on the VM :
@@ -13,9 +15,9 @@ To use the script, the following package needs to be installed on the VM :
 * `curl`,
 * `jq`,
 
-### Systemd timer
+### Systemd 
 
-* Copy the script ``update_firewall.sh`` in the directory ``/etc/systemd/system/``
+* Copy the script ``update-firewall.sh`` in the directory ``/etc/`` and make it executable ``chmox +x /etc/update-firewall.sh``
 * Create add the service  ``update-firewall.service`` in the directory``/etc/systemd/system/``
 * Enable the service with ``systemctl enable update-firewall.service`` and start it with ``systemctl start update-firewall.service``
 * Create the timer ``update-firewall.timer`` in the directory ``/etc/systemd/system/``
@@ -23,9 +25,9 @@ To use the script, the following package needs to be installed on the VM :
 
 ### Crontab
 
-* Copy the script `update_firewall.sh` in the node (example ``/usr/bin/update_firewall.sh``).
+* Copy the script `update-firewall.sh` in the node (example ``/etc/update-firewall.sh``).
 * Run the command ``crontab -e`` as a user allow to use firewalld command
-* Add the following line ``30 12 * * * /usr/bin/update_firewall.sh >> /var/log/firewalld_script.log``
+* Add the following line ``30 12 * * * /usr/bin/update-firewall.sh >> /var/log/firewalld_script.log``
 
 ## Test
 
@@ -72,4 +74,5 @@ flowchart LR
 
 ## Doubt 
 
-* Why does the test environment can access to the prod ? Allowing test host to reach prod environement is dangerous.
+* Allowing access from the tests fleets to the prod fleet seems like a dangerous thing. For Example, if a metrics server in test is compromise, the attacker could call the production and cause harm to the production environnements by exploiting vulnerability from Node Exporter or MySql Export if some exist. He would also have access to the list of server in the wireguard network for both production and test.
+* If the hostname of the service doesn't match the Node value in the Consul data, the filtering can be done with the ServiceAddress

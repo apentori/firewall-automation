@@ -1,6 +1,7 @@
 import socket
 import json
 
+# Script to mock a Node Exporter process on a host
 
 def main():
     host = ''

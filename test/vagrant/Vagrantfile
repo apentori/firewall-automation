@@ -21,6 +21,11 @@ Vagrant.configure("2") do |config|
       sudo apt-get update -y 
       sudo apt install firewalld jq -y
       sudo systemctl enable firewalld 
+      sudo systemctl start firewalld 
+      sudo cp /vagrant_data/update-firewall.* /etc/systemd/system/
+      sudo chmod +x /etc/systemd/system/update-firewall.sh
+      sudo systemctl enable update-firewall.service update-firewall.timer
+      sudo systemctl start update-firewall.service update-firewall.timer
     SHELL
   end
 
@@ -33,10 +38,12 @@ Vagrant.configure("2") do |config|
       sudo apt-get update -y 
       sudo apt install firewalld jq -y
       sudo systemctl enable firewalld 
+      sudo systemctl start firewalld 
       sudo cp /vagrant_data/update-firewall.* /etc/systemd/system/
+      sudo chmod +x /etc/systemd/system/update-firewall.sh
       sudo systemctl enable update-firewall.service update-firewall.timer
       sudo systemctl start update-firewall.service update-firewall.timer
-  SHELL
+    SHELL
   end 
 
   config.vm.define "vm3" do |vm3|
