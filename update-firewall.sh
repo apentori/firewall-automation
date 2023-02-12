@@ -30,8 +30,7 @@ function callConsul(){
 function getServiceAddressByEnvAndStage(){
     local nodeEnv=$1
     local nodeStage=$2
-    local data=$(callConsul "Node.meta.env=$nodeEnv and NodeMeta.stage=$nodeStage" )
-    local data=$(callConsul "${nodeEnv}_${nodeStage}"| jq -r '.[].ServiceAddress' )
+    local data=$(callConsul "Node.meta.env=$nodeEnv and NodeMeta.stage=$nodeStage"  | jq -r '.[].ServiceAddress' )
     echo "$data"
 }
 
