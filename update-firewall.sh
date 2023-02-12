@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script updating the firewalld configuration of server using Consul catalog data.
-# version: 0.0.1
+# version: 0.0.2
 
 CONSUL_HOST="localhost"
 CONSUL_PORT="8500"
@@ -24,6 +24,10 @@ function log_info() {
 function callConsul(){
     local filter=$1
     local data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT" --data-urlencode filter="$filter")
+    if [[ $? -ne 0 ]]; then
+        log_info "Error when getting data from Consul. Premature end of script"
+        exit 1;
+    fi
     echo "$data"
 }
 

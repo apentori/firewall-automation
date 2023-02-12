@@ -70,13 +70,16 @@ flowchart LR
 
 ## Improvements
 
-* [Stability] Handle the unavailability of Consul by quitting the script before reloading the firewalld
-* [Deployment] Create an ansible playbook to deploy the script and init the cron job / the service and timer
-* [Scalability] Get the rules (which node can access which env on which port) from a file so a new rule can be added without modifying the script
-  * Store the rules configuration in Consul KV so it can be easily queried
-* [Configuration] Improve the firewall configuration to be more strict. 
+* **[Stability]** Handle the unavailability of Consul by quitting the script before reloading the firewalld.
+  * Done in the v0.0.2. every Consul call that fail end block the script.
+* **[Deployment]** Create an ansible playbook to deploy the script and init the cron job / the service and timer
+* **[Scalability]** Get the rules (which node can access which env on which port) from a file so a new rule can be added without modifying the script
+  * Store the rules configuration in Consul KV so it can be easily update in every node.
+* **[Configuration]** Improve the firewall configuration to be more strict. 
   * Add the interface in the wireguard network in the zones files.
   * Add service type for each zone
+  * Regroup all rules in one zone, need to test the `richlanguage` fonctionnality of firewalld. <https://firewalld.org/documentation/man-pages/firewalld.richlanguage.html>.
+  * Configure firewalld to log in syslog at new connection attempts (use of `richlanguage.log` fonctionnality).
 
 
 ## Doubts

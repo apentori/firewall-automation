@@ -23,8 +23,11 @@ function log_info() {
 
 function callConsul(){
     local filter=$1
-
     local data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT/$filter")
+    if [[ $? -ne 0 ]]; then
+        log_info "Error when getting data from Consul. Premature end of script"
+        exit 1;
+    fi
     echo "$data"
 }
 
@@ -60,8 +63,14 @@ function write_zone_firewalld(){
 ################################################################################################
 log_info "Starting the script"
 
-host_data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT/$(hostname)" | jq '.[] | { Node, NodeMeta, ServiceMeta }')
-   
+row_data=$(curl -sSf --get "$CONSUL_HOST:$CONSUL_PORT/$CONSUL_ENDPOINT/$(hostname)")
+ if [[ $? -ne 0 ]]; then
+        log_info "Error when getting data from Consul. End of script"
+        exit 1;
+fi   
+
+host_data=$(row_data | jq '.[] | { Node, NodeMeta, ServiceMeta }')
+
 host_env=$(echo $host_data | jq -r '.NodeMeta.env')
 host_stage=$(echo $host_data | jq -r '.NodeMeta.stage')
 
