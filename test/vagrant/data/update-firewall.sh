@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script updating the firewalld configuration of fleets using Consul catalog data.
-# version: 0.0.1
+# version: 0.0.2
 
 CONSUL_HOST="192.168.57.5"
 CONSUL_PORT="8500"
